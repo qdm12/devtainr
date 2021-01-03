@@ -1,0 +1,58 @@
+name: latest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/latest.yml
+      - cmd/**
+      - internal/**
+      - .dockerignore
+      - .golangci.yml
+      - Dockerfile
+      - go.mod
+      - go.sum
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.15"
+          CGO_ENABLED: 1
+      - run: go test -race ./...
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.34
+
+  buildx:
+    runs-on: ubuntu-latest
+    needs: [test, lint]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Buildx setup
+        uses: crazy-max/ghaction-docker-buildx@v3
+      - name: Dockerhub login
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u qmcgaw --password-stdin 2>&1
+      - name: Run Buildx
+        run: |
+          docker buildx build \
+            --progress plain \
+            --platform=linux/amd64,linux/386 \
+            --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+            --build-arg COMMIT=`git rev-parse --short HEAD` \
+            --build-arg VERSION=latest \
+            -t qmcgaw/devtainr \
+            --push \
+            .

@@ -1,0 +1,21 @@
+name: Docker Hub readme
+on:
+  push:
+    branches: [master]
+    paths:
+      - README.md
+      - .github/workflows/dockerhub-readme.yml
+jobs:
+  dockerHubDescription:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2.4.1
+        with:
+          username: qmcgaw
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: qmcgaw/devtainr
+          short-description: Setup your VSCode development container configuration files with style 🦗
+          readme-filepath: README.md

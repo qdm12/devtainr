@@ -6,9 +6,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
+	"syscall"
 	"time"
 
+	"github.com/qdm12/devtainr/internal/models"
 	"github.com/qdm12/devtainr/internal/params"
 	"github.com/qdm12/devtainr/internal/setup"
 )
@@ -22,28 +25,65 @@ var (
 
 func main() {
 	ctx := context.Background()
-	os.Exit(_main(ctx, os.Args))
+	ctx, cancel := context.WithCancel(ctx)
+	buildInfo := models.BuildInfo{
+		Version:   version,
+		Commit:    commit,
+		BuildDate: buildDate,
+	}
+
+	errorCh := make(chan error)
+	go func() {
+		errorCh <- _main(ctx, os.Args, buildInfo)
+	}()
+
+	signalsCh := make(chan os.Signal, 1)
+	signal.Notify(signalsCh,
+		syscall.SIGINT,
+		syscall.SIGTERM,
+		os.Interrupt,
+	)
+
+	exitCode := 0
+	select {
+	case signal := <-signalsCh:
+		fmt.Println("\nShutting down: signal", signal)
+		exitCode = 1
+		cancel()
+		timer := time.NewTimer(time.Second)
+		select {
+		case <-errorCh:
+			if !timer.Stop() {
+				<-timer.C
+			}
+		case <-timer.C:
+			fmt.Println("Shutdown timed out")
+		}
+	case err := <-errorCh:
+		if err != nil {
+			fmt.Println("Fatal error:", err)
+			exitCode = 1
+		}
+		cancel()
+	}
+	os.Exit(exitCode)
 }
 
-func _main(ctx context.Context, args []string) int {
+func _main(ctx context.Context, args []string, buildInfo models.BuildInfo) error {
 	fmt.Printf("🤖 Version %s (commit %s built on %s)\n",
-		version, commit, buildDate)
+		buildInfo.Version, buildInfo.Commit, buildInfo.BuildDate)
 
 	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
 	dev := flagSet.String("dev", "go", "can be one of: go, react, rust, node")
 	repoPath := flagSet.String("path", ".", "path to the repository")
 	namePtr := flagSet.String("name", "project-dev", "name of the development container")
 	if err := flagSet.Parse(args[1:]); err != nil {
-		fmt.Println("❌")
-		fmt.Println(err)
-		return 1
+		return err
 	}
 
 	repository, err := params.GetRepository(*dev)
 	if err != nil {
-		fmt.Println("❌")
-		fmt.Println(err)
-		return 1
+		return err
 	}
 
 	*repoPath = filepath.Clean(*repoPath)
@@ -55,8 +95,7 @@ func _main(ctx context.Context, args []string) int {
 	err = os.Mkdir(devcontainerPath, 0700)
 	if err != nil {
 		fmt.Println("❌")
-		fmt.Println(err)
-		return 1
+		return err
 	}
 	fmt.Println("✔️")
 
@@ -79,8 +118,7 @@ func _main(ctx context.Context, args []string) int {
 			client, baseURL, devcontainerPath, filename)
 		if err != nil {
 			fmt.Println("❌")
-			fmt.Println(err)
-			return 1
+			return err
 		}
 		fmt.Println("✔️")
 	}
@@ -89,12 +127,11 @@ func _main(ctx context.Context, args []string) int {
 	jsonFilepath := filepath.Join(devcontainerPath, "devcontainer.json")
 	if err := setup.ChangeName(jsonFilepath, name); err != nil {
 		fmt.Println("❌")
-		fmt.Println(err)
-		return 1
+		return err
 	}
 	fmt.Println("✔️")
 
 	fmt.Println("🦾 Your " + *dev + " development container configuration is ready! 🚀")
 
-	return 0
+	return nil
 }

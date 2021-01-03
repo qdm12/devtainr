@@ -92,7 +92,7 @@ func _main(ctx context.Context, args []string, buildInfo models.BuildInfo) error
 	name := *namePtr
 
 	fmt.Print("📁 Creating .devcontainer directory...")
-	err = os.Mkdir(devcontainerPath, 0700)
+	err = os.MkdirAll(devcontainerPath, 0700)
 	if err != nil {
 		fmt.Println("❌")
 		return err

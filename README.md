@@ -15,26 +15,29 @@ Install development container configuration files to your repository for one of 
 
 ### Binary
 
-```sh
-VERSION=v0.1.0
-ARCH=amd64
+1. Download the binary for your machine from [the last release page](https://github.com/qdm12/devtainr/releases/latest)
+1. If you are on Linux or OSX, make it executable with:
 
-wget -O devtainr "https://github.com/qdm12/devtainr/releases/download/$VERSION/xcputranslate_$VERSION_linux_$ARCH"
-chmod 500 devtainr
+    ```sh
+    chmod +x devtainr
+    ```
 
-./devtainr -dev go -name projectname
-📁 Creating .devcontainer directory...✔️
-📥 Downloading .dockerignore...✔️
-📥 Downloading Dockerfile...✔️
-📥 Downloading README.md...✔️
-📥 Downloading devcontainer.json...✔️
-📥 Downloading docker-compose.yml...✔️
-✏️ Setting name to project-dev...✔️
-🦾 Your go development container configuration is ready! 🚀
+1. Run it with
 
-# More information:
-./devtainr -help
-```
+    ```sh
+    ./devtainr -dev go -name projectname
+    📁 Creating .devcontainer directory...✔️
+    📥 Downloading .dockerignore...✔️
+    📥 Downloading Dockerfile...✔️
+    📥 Downloading README.md...✔️
+    📥 Downloading devcontainer.json...✔️
+    📥 Downloading docker-compose.yml...✔️
+    ✏️ Setting name to project-dev...✔️
+    🦾 Your go development container configuration is ready! 🚀
+
+    # More information:
+    ./devtainr -help
+    ```
 
 ### Docker
 

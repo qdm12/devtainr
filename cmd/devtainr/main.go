@@ -74,7 +74,7 @@ func _main(ctx context.Context, args []string, buildInfo models.BuildInfo) error
 		buildInfo.Version, buildInfo.Commit, buildInfo.BuildDate)
 
 	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
-	dev := flagSet.String("dev", "go", "can be one of: go, react, rust, node, latex")
+	dev := flagSet.String("dev", "go", "can be one of: go, react, rust, node, latex, base")
 	repoPath := flagSet.String("path", ".", "path to the repository")
 	namePtr := flagSet.String("name", "project-dev", "name of the development container")
 	if err := flagSet.Parse(args[1:]); err != nil {

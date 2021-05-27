@@ -11,6 +11,7 @@ Install development container configuration files to your repository for one of 
 - [`qmcgaw/rustdevcontainer`](https://github.com/qdm12/rustdevcontainer)
 - [`qmcgaw/nodedevcontainer`](https://github.com/qdm12/nodedevcontainer)
 - [`qmcgaw/latexdevcontainer`](https://github.com/qdm12/latexdevcontainer)
+- [`qmcgaw/basedevcontainer`](https://github.com/qdm12/basedevcontainer)
 
 ## Usage
 

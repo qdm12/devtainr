@@ -22,6 +22,8 @@ func GetRepository(dev string) (repository string, err error) {
 		return "qdm12/nodedevcontainer", nil
 	case "latex":
 		return "qdm12/latexdevcontainer", nil
+	case "base":
+		return "qdm12/basedevcontainer", nil
 	default:
 		return "", fmt.Errorf("%w: %s", ErrDevIsNotValid, dev)
 	}

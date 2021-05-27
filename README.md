@@ -43,7 +43,7 @@ Install development container configuration files to your repository for one of 
 ### Docker
 
 ```sh
-docker run -it --rm -v "/yourrepopath:/repository" qmcgaw/devtainr:v0.1.0 -dev go -path /repository -name projectname
+docker run -it --rm -v "/yourrepopath:/repository" qmcgaw/devtainr -dev go -path /repository -name projectname
 📁 Creating .devcontainer directory...✔️
 📥 Downloading .dockerignore...✔️
 📥 Downloading Dockerfile...✔️
@@ -54,7 +54,7 @@ docker run -it --rm -v "/yourrepopath:/repository" qmcgaw/devtainr:v0.1.0 -dev g
 🦾 Your go development container configuration is ready! 🚀
 
 # More information
-docker run -it --rm qmcgaw/devtainr:v0.1.0 -help
+docker run -it --rm qmcgaw/devtainr -help
 ```
 
 ## Platforms supported

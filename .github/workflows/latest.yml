@@ -34,9 +34,9 @@ jobs:
           fetch-depth: 0
       - uses: golangci/golangci-lint-action@v2
         with:
-          version: v1.34
+          version: v1.40
 
-  buildx:
+  docker:
     runs-on: ubuntu-latest
     needs: [test, lint]
     steps:

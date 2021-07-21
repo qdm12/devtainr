@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"syscall"
 	"time"
+	_ "time/tzdata"
 
 	"github.com/qdm12/devtainr/internal/models"
 	"github.com/qdm12/devtainr/internal/params"

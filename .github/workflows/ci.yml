@@ -53,7 +53,7 @@ jobs:
       - name: Build final image
         run: docker build .
 
-  docker-push:
+  publish:
     needs: [verify]
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -97,18 +97,13 @@ jobs:
           tags: qmcgaw/devtainr:${{ steps.vars.outputs.version }}
           push: true
 
-  go-release:
-    needs: [docker-push]
-    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-go@v2
+      - if: github.event_name == 'release'
+        uses: actions/setup-go@v2
         with:
           go-version: 1.16
-      - uses: goreleaser/goreleaser-action@v2
+
+      - if: github.event_name == 'release'
+        uses: goreleaser/goreleaser-action@v2.5.0
         with:
           version: latest
           args: release --config .gorelease.yml --rm-dist

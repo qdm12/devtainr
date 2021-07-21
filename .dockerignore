@@ -1,7 +1,6 @@
 .devcontainer
 .github
 .dockerignore
-.golangci.yml
 .gorelease.yml
 Dockerfile
 LICENSE

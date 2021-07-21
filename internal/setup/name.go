@@ -48,9 +48,5 @@ func ChangeName(filepath, name string) error {
 		return err
 	}
 
-	if err := file.Close(); err != nil {
-		return err
-	}
-
-	return nil
+	return file.Close()
 }

@@ -38,9 +38,5 @@ func MirrorFile(ctx context.Context, client *http.Client,
 		return err
 	}
 
-	if err := file.Close(); err != nil {
-		return err
-	}
-
-	return nil
+	return file.Close()
 }

@@ -12,6 +12,7 @@ import (
 	"time"
 	_ "time/tzdata"
 
+	_ "github.com/breml/rootcerts"
 	"github.com/qdm12/devtainr/internal/models"
 	"github.com/qdm12/devtainr/internal/params"
 	"github.com/qdm12/devtainr/internal/setup"

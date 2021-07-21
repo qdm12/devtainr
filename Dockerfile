@@ -18,9 +18,6 @@ RUN go build -trimpath -ldflags="-s -w \
   -X 'main.commit=$COMMIT' \
   " -o entrypoint cmd/devtainr/main.go
 
-FROM alpine:${ALPINE_VERSION} AS alpine
-RUN apk add ca-certificates
-
 FROM scratch
 ARG VERSION=unknown
 ARG BUILD_DATE="an unknown date"
@@ -35,6 +32,5 @@ LABEL \
   org.opencontainers.image.source="https://github.com/qdm12/devtainr" \
   org.opencontainers.image.title="Devtainr" \
   org.opencontainers.image.description="Setup your development container with style"
-COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ENTRYPOINT ["/devtainr"]
 COPY --from=builder /tmp/gobuild/entrypoint /devtainr

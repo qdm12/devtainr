@@ -85,7 +85,7 @@ jobs:
           else
             echo "version=$BRANCH" >> $GITHUB_ENV
             echo "platforms=linux/amd64" >> $GITHUB_ENV
-          fi          
+          fi
 
       - name: Build and push final image
         uses: docker/build-push-action@v2.6.1

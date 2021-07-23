@@ -20,18 +20,18 @@ import (
 
 //nolint:gochecknoglobals
 var (
-	version   = "unknown"
-	commit    = "unknown"
-	buildDate = "an unknown date"
+	version = "unknown"
+	commit  = "unknown"
+	created = "an unknown date"
 )
 
 func main() {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	buildInfo := models.BuildInfo{
-		Version:   version,
-		Commit:    commit,
-		BuildDate: buildDate,
+		Version: version,
+		Commit:  commit,
+		Created: created,
 	}
 
 	errorCh := make(chan error)
@@ -73,7 +73,7 @@ func main() {
 
 func _main(ctx context.Context, args []string, buildInfo models.BuildInfo) error {
 	fmt.Printf("🤖 Version %s (commit %s built on %s)\n",
-		buildInfo.Version, buildInfo.Commit, buildInfo.BuildDate)
+		buildInfo.Version, buildInfo.Commit, buildInfo.Created)
 
 	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
 	dev := flagSet.String("dev", "go", "can be one of: go, react, rust, node, latex, base")

@@ -48,7 +48,7 @@ RUN GOARCH="$(xcputranslate translate -targetplatform=${TARGETPLATFORM} -field a
   GOARM="$(xcputranslate translate -targetplatform=${TARGETPLATFORM} -field arm)" \
   go build -trimpath -ldflags="-s -w \
   -X 'main.version=$VERSION' \
-  -X 'main.buildDate=$BUILD_DATE' \
+  -X 'main.created=$CREATED' \
   -X 'main.commit=$COMMIT' \
   " -o entrypoint cmd/devtainr/main.go
 

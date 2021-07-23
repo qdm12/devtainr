@@ -22,7 +22,7 @@ func MirrorFile(ctx context.Context, client *http.Client,
 	}
 
 	filepath := filepath.Join(basePath, filename)
-	file, err := os.OpenFile(filepath, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0600)
+	file, err := os.OpenFile(filepath, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0666)
 	if err != nil {
 		return err
 	}

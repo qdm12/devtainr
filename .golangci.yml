@@ -6,10 +6,10 @@ linters-settings:
 
 issues:
   exclude-rules:
-    - text: "mnd: Magic number: 0700*"
+    - text: "mnd: Magic number: 0777*"
       linters:
         - gomnd
-    - text: "mnd: Magic number: 0600*"
+    - text: "mnd: Magic number: 0666*"
       linters:
         - gomnd
 

@@ -53,7 +53,7 @@ jobs:
       - name: Build final image
         run: docker build .
 
-  docker-push:
+  publish:
     needs: [verify]
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -73,9 +73,11 @@ jobs:
         run: |
           BRANCH=${GITHUB_REF#refs/heads/}
           TAG=${GITHUB_REF#refs/tags/}
+          echo "istag=0" >> $GITHUB_ENV
           echo ::set-output name=commit::$(git rev-parse --short HEAD)
           echo ::set-output name=created::$(date -u +%Y-%m-%dT%H:%M:%SZ)
           if [ "$TAG" != "$GITHUB_REF" ]; then
+            echo "istag=1" >> $GITHUB_ENV
             echo ::set-output name=version::$TAG
             echo ::set-output name=platforms::linux/amd64,linux/386,linux/arm64,linux/arm/v6,linux/arm/v7,linux/s390x,linux/ppc64le,linux/riscv64
           elif [ "$BRANCH" = "main" ]; then
@@ -97,18 +99,13 @@ jobs:
           tags: qmcgaw/devtainr:${{ steps.vars.outputs.version }}
           push: true
 
-  go-release:
-    needs: [docker-push]
-    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-go@v2
+      - if: env.istag == '1'
+        uses: actions/setup-go@v2
         with:
           go-version: 1.16
-      - uses: goreleaser/goreleaser-action@v2
+
+      - if: env.istag == '1'
+        uses: goreleaser/goreleaser-action@v2.6.1
         with:
           version: latest
           args: release --config .gorelease.yml --rm-dist

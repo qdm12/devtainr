@@ -1,5 +1,7 @@
-github.com/breml/rootcerts v0.1.0 h1:jf/F4MHeXBi7FVAHrPq+/MBmPlGXTbUAyR977bZ0j4E=
-github.com/breml/rootcerts v0.1.0/go.mod h1:24FDtzYMpqIeYC7QzaE8VPRQaFZU5TIUDlyk8qwjD88=
+github.com/breml/rootcerts v0.2.0 h1:bBIgVe8bS0Ec+orgWpZ/GRYt3a0O8yoW+g2kSBY2aLE=
+github.com/breml/rootcerts v0.2.0/go.mod h1:24FDtzYMpqIeYC7QzaE8VPRQaFZU5TIUDlyk8qwjD88=
+github.com/breml/rootcerts v0.2.11 h1:njUAtoyZ6HUXPAPk63tGz0BEZk1/6gyfqK5fTzksHkM=
+github.com/breml/rootcerts v0.2.11/go.mod h1:S/PKh+4d1HUn4HQovEB8hPJZO6pUZYrIhmXBhsegfXw=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

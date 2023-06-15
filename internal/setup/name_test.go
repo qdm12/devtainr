@@ -21,7 +21,7 @@ func Test_nameRegex(t *testing.T) {
 			found: true,
 		},
 		"containing name with spaces": {
-			s: ` "name"  : 	 "b",`,
+			s:     ` "name"  : 	 "b",`,
 			found: true,
 		},
 	}

@@ -1,20 +1,6 @@
-linters-settings:
-  maligned:
-    suggest-new: true
-  misspell:
-    locale: US
-
-issues:
-  exclude-rules:
-    - text: "mnd: Magic number: 0777*"
-      linters:
-        - gomnd
-    - text: "mnd: Magic number: 0666*"
-      linters:
-        - gomnd
-
+version: "2"
 linters:
-  disable-all: true
+  default: none
   enable:
     - asasalint
     - asciicheck
@@ -27,14 +13,12 @@ linters:
     - dupl
     - dupword
     - durationcheck
+    - err113
     - errchkjson
     - errname
     - errorlint
-    - execinquery
     - exhaustive
-    - exportloopref
     - forcetypeassert
-    - gci
     - gocheckcompilerdirectives
     - gochecknoglobals
     - gochecknoinits
@@ -43,10 +27,7 @@ linters:
     - gocritic
     - gocyclo
     - godot
-    - goerr113
     - goheader
-    - goimports
-    - gomnd
     - gomoddirectives
     - goprintffuncname
     - gosec
@@ -58,6 +39,7 @@ linters:
     - maintidx
     - makezero
     - misspell
+    - mnd
     - musttag
     - nakedret
     - nestif
@@ -74,7 +56,6 @@ linters:
     - revive
     - rowserrcheck
     - sqlclosecheck
-    - tenv
     - thelper
     - tparallel
     - unconvert
@@ -82,8 +63,34 @@ linters:
     - usestdlibvars
     - wastedassign
     - whitespace
-
-run:
-  skip-dirs:
-    - .devcontainer
-    - .github
+  settings:
+    misspell:
+      locale: US
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - mnd
+        text: "Magic number: 0777*"
+      - linters:
+          - mnd
+        text: "Magic number: 0666*"
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

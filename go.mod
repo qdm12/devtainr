@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/breml/rootcerts v0.3.1
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 )
 
 require (

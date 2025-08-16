@@ -68,6 +68,12 @@ jobs:
           username: qmcgaw
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: qdm12
+          password: ${{ github.token }}
+
       - name: Set variables
         id: vars
         run: |
@@ -95,7 +101,9 @@ jobs:
             CREATED=${{ env.created }}
             COMMIT=${{ env.commit }}
             VERSION=${{ env.version }}
-          tags: qmcgaw/devtainr:${{ env.version }}
+          tags: |
+            qmcgaw/devtainr:${{ env.version }}
+            ghcr.io/qdm12/devtainr:${{ env.version }}
           push: true
 
       - if: env.istag == '1'

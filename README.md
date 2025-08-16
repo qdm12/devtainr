@@ -44,7 +44,7 @@ Install development container configuration files to your repository for one of 
 ### Docker
 
 ```sh
-docker run -it --rm -v "/yourrepopath:/repository" qmcgaw/devtainr -dev go -path /repository -name projectname
+docker run -it --rm --user="$(id -u):$(id -g)" -v "/yourrepopath:/repository" qmcgaw/devtainr -dev go -path /repository -name projectname
 📁 Creating .devcontainer directory...✔️
 📥 Downloading .dockerignore...✔️
 📥 Downloading Dockerfile...✔️

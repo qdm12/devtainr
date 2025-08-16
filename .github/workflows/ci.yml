@@ -104,9 +104,9 @@ jobs:
           go-version-file: "go.mod"
 
       - if: env.istag == '1'
-        uses: goreleaser/goreleaser-action@v2.6.1
+        uses: goreleaser/goreleaser-action@v6
         with:
           version: latest
-          args: release --config .gorelease.yml --rm-dist
+          args: release --config .gorelease.yml --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

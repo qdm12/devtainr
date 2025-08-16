@@ -3,7 +3,7 @@ module github.com/qdm12/devtainr
 go 1.25
 
 require (
-	github.com/breml/rootcerts v0.2.11
+	github.com/breml/rootcerts v0.3.1
 	github.com/stretchr/testify v1.8.4
 )
 

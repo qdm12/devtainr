@@ -33,7 +33,6 @@ Install development container configuration files to your repository for one of 
     📥 Downloading Dockerfile...✔️
     📥 Downloading README.md...✔️
     📥 Downloading devcontainer.json...✔️
-    📥 Downloading docker-compose.yml...✔️
     ✏️ Setting name to project-dev...✔️
     🦾 Your go development container configuration is ready! 🚀
 
@@ -50,7 +49,6 @@ docker run -it --rm --user="$(id -u):$(id -g)" -v "/yourrepopath:/repository" qm
 📥 Downloading Dockerfile...✔️
 📥 Downloading README.md...✔️
 📥 Downloading devcontainer.json...✔️
-📥 Downloading docker-compose.yml...✔️
 ✏️ Setting name to project-dev...✔️
 🦾 Your go development container configuration is ready! 🚀
 

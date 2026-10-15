@@ -112,7 +112,6 @@ func _main(ctx context.Context, args []string, buildInfo models.BuildInfo) error
 		"Dockerfile",
 		"README.md",
 		"devcontainer.json",
-		"docker-compose.yml",
 	}
 	for _, filename := range devcontainerFilenames {
 		fmt.Print("📥 Downloading ", filename, "...")

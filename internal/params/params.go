@@ -14,12 +14,8 @@ func GetRepository(dev string) (repository string, err error) {
 	switch dev {
 	case "go":
 		return "qdm12/godevcontainer", nil
-	case "react":
-		return "qdm12/reactdevcontainer", nil
 	case "rust":
 		return "qdm12/rustdevcontainer", nil
-	case "node":
-		return "qdm12/nodedevcontainer", nil
 	case "latex":
 		return "qdm12/latexdevcontainer", nil
 	case "base":

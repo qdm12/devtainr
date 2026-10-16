@@ -7,9 +7,7 @@ Setup your VSCode development container configuration files with style 🦗
 Install development container configuration files to your repository for one of the following:
 
 - [`qmcgaw/godevcontainer`](https://github.com/qdm12/godevcontainer)
-- [`qmcgaw/reactdevcontainer`](https://github.com/qdm12/reactdevcontainer)
 - [`qmcgaw/rustdevcontainer`](https://github.com/qdm12/rustdevcontainer)
-- [`qmcgaw/nodedevcontainer`](https://github.com/qdm12/nodedevcontainer)
 - [`qmcgaw/latexdevcontainer`](https://github.com/qdm12/latexdevcontainer)
 - [`qmcgaw/basedevcontainer`](https://github.com/qdm12/basedevcontainer)
 

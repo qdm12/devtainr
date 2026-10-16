@@ -62,16 +62,6 @@ docker run -it --rm qmcgaw/devtainr -help
 
 ## Build it yourself
 
-Install Go, then either
-
-- Download it on your machine:
-
-  ```sh
-  go get github.com/qdm12/devtainr/cmd/devtainr
-  ```
-
-- Clone this repository and build it:
-
-  ```sh
-  GOARCH=amd64 go build cmd/devtainr/main.go
-  ```
+```sh
+go install github.com/qdm12/devtainr/cmd/devtainr
+```

@@ -27,11 +27,16 @@ Install development container configuration files to your repository for one of 
     ```sh
     ./devtainr -dev go -name projectname
     📁 Creating .devcontainer directory...✔️
-    📥 Downloading .dockerignore...✔️
-    📥 Downloading Dockerfile...✔️
-    📥 Downloading README.md...✔️
-    📥 Downloading devcontainer.json...✔️
-    ✏️ Setting name to project-dev...✔️
+    📥 Downloading qdm12/godevcontainer .devcontainer directory...✔️
+    📄 .dockerignore
+    📄 Dockerfile
+    📄 README.md
+    📁 docker
+    📄 docker/devcontainer.json
+    📁 podman
+    📄 podman/devcontainer.json
+    ✏️ Setting name of docker/devcontainer.json to projectname...✔️
+    ✏️ Setting name of podman/devcontainer.json to projectname...✔️
     🦾 Your go development container configuration is ready! 🚀
 
     # More information:
@@ -43,11 +48,16 @@ Install development container configuration files to your repository for one of 
 ```sh
 docker run -it --rm --user="$(id -u):$(id -g)" -v "/yourrepopath:/repository" qmcgaw/devtainr -dev go -path /repository -name projectname
 📁 Creating .devcontainer directory...✔️
-📥 Downloading .dockerignore...✔️
-📥 Downloading Dockerfile...✔️
-📥 Downloading README.md...✔️
-📥 Downloading devcontainer.json...✔️
-✏️ Setting name to project-dev...✔️
+📥 Downloading qdm12/godevcontainer .devcontainer directory...✔️
+📄 .dockerignore
+📄 Dockerfile
+📄 README.md
+📁 docker
+📄 docker/devcontainer.json
+📁 podman
+📄 podman/devcontainer.json
+✏️ Setting name of docker/devcontainer.json to projectname...✔️
+✏️ Setting name of podman/devcontainer.json to projectname...✔️
 🦾 Your go development container configuration is ready! 🚀
 
 # More information
